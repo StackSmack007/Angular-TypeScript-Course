@@ -1,0 +1,13 @@
+<h1>Todo App</h1>
+<input type="text" #taskInput placeHolder="type your task">
+<input type="submit" (click)="addTask(taskInput.value); taskInput.value=''; " value="Add Todo">
+
+<span>
+<ul>
+
+<task-task class="todo-items" *ngFor="let t of tasks; let i=index;" [task]="t" (completionHandler)="completeTask(i)" >
+</task-task>
+</ul>
+
+
+</span>

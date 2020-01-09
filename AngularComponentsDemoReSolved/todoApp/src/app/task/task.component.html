@@ -1,0 +1,1 @@
+<li >HHHs<span>{{task.name}}</span>&nbsp; <button *ngIf="!task.isCompleted"  (click)="executeCompletion()">Complete</button> <span *ngIf="task.isCompleted" class="text-green">Already completed</span></li>
