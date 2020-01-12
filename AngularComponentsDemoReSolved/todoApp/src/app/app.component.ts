@@ -15,11 +15,9 @@ export class AppComponent {
   addTask(v: string) {
     if (v === "") return;
     this.tasks.push({ name: v, isCompleted: false });
-    console.log(this.tasks);
   }
 
   completeTask(i: number) {
     this.tasks[i].isCompleted = true;
-    console.log("prikliuchihme eventa" + this.tasks[i]);
   }
 }

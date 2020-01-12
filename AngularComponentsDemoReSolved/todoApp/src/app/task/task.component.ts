@@ -8,14 +8,19 @@ import { ITask } from "src/intefaces/itask";
   styleUrls: ["./task.component.css"]
 })
 export class TaskComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    // this.completionHandler=new EventEmitter();
+     this.completionHandler.subscribe(()=>console.log("test122222"));
+  }
 
-  @Output() completionHandler: EventEmitter<void> = new EventEmitter();
+  @Output() completionHandler: EventEmitter<string>=new EventEmitter();
 
   @Input() task: ITask;
 
 executeCompletion(){
+
   this.completionHandler.emit();
+
 }
 
   ngOnInit() {
