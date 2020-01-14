@@ -1,7 +1,7 @@
-
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { MovieService } from "src/Services/MovieService";
-import { IMovie, Language, Ranking } from "src/Interfaces/IMovie";
+import { IMovie } from "src/Interfaces/IMovie";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-movies",
@@ -9,32 +9,56 @@ import { IMovie, Language, Ranking } from "src/Interfaces/IMovie";
   styleUrls: ["./movies.component.css"]
 })
 export class MoviesComponent implements OnInit {
-  private popularMovies: IMovie[];
-  private upcomingMovies: IMovie[];
-  private nowPlayingMovies: IMovie[];
+  @Input()
+  searchedMovies: IMovie[];
+
+  private subscriptions: Subscription[] = [];
+  public popularMovies: IMovie[];
+  public upcomingMovies: IMovie[];
+
+  public nowPlayingMovies: IMovie[];
+
+  public kidsMovies: IMovie[];
+  public dramaMovies: IMovie[];
+
   public chosenId = null;
-  private readonly lang = "en-EN";
+
   constructor(private moviesService: MovieService) {}
 
   ngOnInit() {
-    this.moviesService
-      .GetMovies(Language[this.lang], Ranking.popular)
-      .subscribe(data => {
-        this.popularMovies = data["results"].slice(0, 6);
-      });
+    this.subscriptions.push(
+      this.moviesService.getPopularMovies().subscribe(data => {
+        this.popularMovies = data;
+      })
+    );
 
-    this.moviesService
-      .GetMovies(Language[this.lang], Ranking.upcoming)
-      .subscribe(data => {
-        this.upcomingMovies = data["results"].slice(0, 6);
-      });
+    this.subscriptions.push(
+      this.moviesService.getUpcomingMovies().subscribe(data => {
+        this.upcomingMovies = data;
+      })
+    );
 
-    this.moviesService
-      .GetMovies(Language[this.lang], Ranking.now_playing)
-      .subscribe(data => {
-        this.nowPlayingMovies = data["results"].slice(0, 6);
-        // console.log(this.nowPlayingMovies);
-      });
+    this.subscriptions.push(
+      this.moviesService.getNowPlayingMovies().subscribe(data => {
+        this.nowPlayingMovies = data;
+      })
+    );
+
+    this.subscriptions.push(
+      this.moviesService.getKidsMovies().subscribe(x => {
+        this.kidsMovies = x;
+      })
+    );
+
+    this.subscriptions.push(
+      this.moviesService.getDramaMovies().subscribe(x => {
+        this.dramaMovies = x;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(x => x.unsubscribe());
   }
 
   informUser(id: number) {

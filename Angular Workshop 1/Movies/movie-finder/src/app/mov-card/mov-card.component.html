@@ -13,6 +13,6 @@
       <li class="list-group-item">Votes Count: {{movie.vote_count}}</li>
     </ul>
     <div class="card-body">
-      <a href="#" class="btn btn-primary" (click)="alertParent()">Details</a>
+      <a routerLink="/details/{{movie.id}}" class="btn btn-primary" (click)="alertParent()">Details</a>
     </div>
   </div>

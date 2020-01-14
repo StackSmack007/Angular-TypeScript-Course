@@ -1,35 +1,73 @@
-<div class="container-fluid">
-<h2 class="panel-title">Popular Movies</h2>
-<div class="panel panel-default">
-    <div class="panel-heading">
-    </div>
-    <div class="row justify-content-between">
-        <div class="col-lg-2" *ngFor="let mov of popularMovies">
-            <app-mov-card [movie]="mov" (childEvent)="informUser($event)"></app-mov-card>
+<div class="container-fluid" *ngIf="searchedMovies">
+    <div class="container-fluid">
+        <h2 class="panel-title">Searched Movies</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-lg-2" *ngFor="let mov of searchedMovies">
+                    <app-mov-card [movie]="mov" (childEvent)="informUser($event)"></app-mov-card>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<h2 class="panel-title">In Theaters</h2>
-<div class="panel panel-default">
-    <div class="panel-heading">
-    </div>
-    <div class="row justify-content-between">
-        <div class="col-lg-2" *ngFor="let mov of nowPlayingMovies">
-            <app-mov-card [movie]="mov"></app-mov-card>
+<div class="container-fluid" *ngIf="!searchedMovies">
+    <h2 class="panel-title">Popular Movies</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-2" *ngFor="let mov of popularMovies">
+                <app-mov-card [movie]="mov" (childEvent)="informUser($event)"></app-mov-card>
+            </div>
         </div>
     </div>
-</div>
 
-<h2 class="panel-title">Soon In Your Cinemas</h2>
-<div class="panel panel-default">
-    <div class="panel-heading">
-    </div>
-    <div class="row justify-content-between">
-        <div class="col-lg-2" *ngFor="let mov of upcomingMovies">
-            <app-mov-card [movie]="mov"></app-mov-card>
+    <h2 class="panel-title">In Theaters</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-2" *ngFor="let mov of nowPlayingMovies">
+                <app-mov-card [movie]="mov"></app-mov-card>
+            </div>
         </div>
     </div>
-</div>
-<h1 class="panel-title text-warning" *ngIf="chosenId">Chosen Movie {{chosenId}}</h1>
+
+    <h2 class="panel-title">Soon In Your Cinemas</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-2" *ngFor="let mov of upcomingMovies">
+                <app-mov-card [movie]="mov"></app-mov-card>
+            </div>
+        </div>
+    </div>
+    <h1 class="panel-title text-warning" *ngIf="chosenId">Chosen Movie {{chosenId}}</h1>
+
+
+    <h2 class="panel-title">Kids Favorite</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-2" *ngFor="let mov of kidsMovies">
+                <app-mov-card [movie]="mov"></app-mov-card>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="panel-title">Drama Movies</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-2" *ngFor="let mov of dramaMovies">
+                <app-mov-card [movie]="mov"></app-mov-card>
+            </div>
+        </div>
+    </div>
 </div>
