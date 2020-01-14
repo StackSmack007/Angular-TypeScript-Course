@@ -1,13 +1,15 @@
 <main role="main">
     <div class="jumbotron">
         <div class="container">
-          <h1>Find a movie</h1>
-          <h3><em>Search for a movie using the form below:</em></h3>
-          <form>
-            <input #sInput class="form-control input-lg" type="text" placeholder="Search" aria-label="Search" minlength="3">
-            <button class="btn btn-primary mt-2" type="reset" (click)="searchMovie(sInput.value)">Search</button>
-          </form>
+            <h1>Find a movie</h1>
+            <h3><em>Search for a movie using the form below:</em></h3>
+            <form>
+                <input #sInput class="form-control input-lg" type="text" placeholder="Search" aria-label="Search"
+                    minlength="3">
+                <a class="btn btn-primary mt-2" (click)="makeSearch(sInput.value);sInput.value=''">Search</a>
+            </form>
         </div>
-     </div>
+    </div>
 </main>
-<app-movies [searchedMovies]="foundMovies"></app-movies>
+<router-outlet></router-outlet>
+<!-- <app-movies [searchedMovies]="foundMovies"></app-movies> -->

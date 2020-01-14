@@ -82,7 +82,6 @@ export class MovieService {
     return this.http.get<IMovieDetails>(movieInfoUrl(id, this.language)).pipe(
       map(x => {
         const genresNames = x.genres.map(g => g["name"]);
-        console.log(genresNames);
         x.genres = genresNames;
         return x;
       })

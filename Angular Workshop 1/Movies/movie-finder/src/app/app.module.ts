@@ -12,6 +12,8 @@ import { MovCardComponent } from "./mov-card/mov-card.component";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { FunctionalityModule } from "./functionality/functionality.module";
 import { CommonModule } from '@angular/common';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { RouteNotFoundComponent } from './route-not-found/route-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     MainContentComponent,
     MovCardComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    SearchResultsComponent,
+    RouteNotFoundComponent
   ],
   imports: [
     BrowserModule,

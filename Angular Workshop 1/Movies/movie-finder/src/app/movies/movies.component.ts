@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MovieService } from "src/Services/MovieService";
 import { IMovie } from "src/Interfaces/IMovie";
 import { Subscription } from "rxjs";
@@ -9,8 +9,6 @@ import { Subscription } from "rxjs";
   styleUrls: ["./movies.component.css"]
 })
 export class MoviesComponent implements OnInit {
-  @Input()
-  searchedMovies: IMovie[];
 
   private subscriptions: Subscription[] = [];
   public popularMovies: IMovie[];

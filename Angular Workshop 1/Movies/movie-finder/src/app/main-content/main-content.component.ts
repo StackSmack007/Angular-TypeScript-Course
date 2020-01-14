@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { MovieService } from "src/Services/MovieService";
 import { IMovie } from "src/Interfaces/IMovie";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-main-content",
@@ -8,14 +9,14 @@ import { IMovie } from "src/Interfaces/IMovie";
   styleUrls: ["./main-content.component.css"]
 })
 export class MainContentComponent implements OnInit {
-  constructor(private ms: MovieService) {}
+  constructor(private router: Router) {}
 
-  public foundMovies: IMovie[] = null;
-
-  searchMovie(name: string) {
-    this.ms.searchMoviesByName(name,true).subscribe(x => {
-      this.foundMovies = x;
-    });
+  makeSearch(str: string) {
+    if (str.length < 3) {
+      return;
+    }
+    this.router.navigate(["/search/" + str]);
   }
+
   ngOnInit() {}
 }

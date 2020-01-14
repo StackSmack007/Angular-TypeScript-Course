@@ -1,19 +1,4 @@
-<div class="container-fluid" *ngIf="searchedMovies">
-    <div class="container-fluid">
-        <h2 class="panel-title">Searched Movies</h2>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-            </div>
-            <div class="row justify-content-between">
-                <div class="col-lg-2" *ngFor="let mov of searchedMovies">
-                    <app-mov-card [movie]="mov" (childEvent)="informUser($event)"></app-mov-card>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid" *ngIf="!searchedMovies">
+<div class="container-fluid">
     <h2 class="panel-title">Popular Movies</h2>
     <div class="panel panel-default">
         <div class="panel-heading">
