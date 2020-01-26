@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h1>Registration Form</h1>
+            <form #f="ngForm" (ngSubmit)="register(f.value)">
+                <!-- <pre>{{ f.value| json}}</pre> -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input #fnames="ngModel" ngModel name="fnames" class="form-control" placeholder="Full Name"
+                        pattern="[A-Z][a-z]+\s*[A-Z][a-z]+" required>
+                </div>
+                <div *ngIf="fnames.touched">
+                    <div class="alert alert-danger" role="alert" *ngIf="fnames.errors?.required">"Full Name is
+                        required!"
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="fnames.errors?.pattern">"Incorrect full
+                        name format!"</div>
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input #mail="ngModel" ngModel name="mail" ngModel class="form-control" placeholder="Email Address"
+                        type="email" required email>
+                </div>
+                <div *ngIf="mail.touched">
+                    <div class="alert alert-danger" role="alert" *ngIf="mail.errors?.required">
+                        "Email is required!"</div>
+                    <div class="alert alert-danger" role="alert" *ngIf="mail.errors?.email">
+                        "Incorrect Email format!"</div>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <select #ph_area="ngModel" [ngModel]="phoneCodes[0]" name="ph_area" class="custom-select"
+                        style="max-width: 120px;">
+                        <option [ngValue]="code" *ngFor="let code of phoneCodes">{{code}}</option>
+
+                    </select>
+                    <input ngModel #p_num="ngModel" name="phoneNumber" required pattern="\d{9}" class="form-control"
+                        placeholder="Phone number" type="text">
+                </div>
+                <div *ngIf="p_num.touched">
+                    <div class="alert alert-danger" role="alert" *ngIf="p_num.errors?.required">
+                        "Phone Number is required!"</div>
+                    <div class="alert alert-danger" role="alert" *ngIf="p_num.errors?.pattern">
+                        "Incorrect phone number 9 digits required!"</div>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select [ngModel]="positions[0]" name="position" class="form-control">
+                        <option [ngValue]="pos" *ngFor="let pos of positions">{{pos}}</option>
+                    </select>
+                </div>
+
+                <div ngModelGroup="pwd" #nameCtrl="ngModelGroup">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input ngModel #pwf="ngModel" name="Pfirst" required pattern="[\dA-Za-z]{3,16}"
+                            class="form-control" placeholder="Create password" type="password">
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input ngModel #pws="ngModel" name="Psecond" pattern="[\dA-Za-z]{3,16}" class="form-control"
+                            placeholder="Repeat password" type="password">
+                    </div>
+                </div>
+                <div *ngIf="nameCtrl.touched">
+                    <div class="alert alert-danger" role="alert" *ngIf="pwf.value!==pws.value">
+                        Passwords Mismatch!</div>
+                    <div class="alert alert-danger" role="alert" *ngIf="nameCtrl.invalid">
+                        Incorrect Password Field! </div>
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input #pic="ngModel" appValPath [extns]="'img,jpg,gif'" ngModel name="pic" class="form-control"
+                        placeholder="picture Url" type="url" required>
+                </div>
+
+                <div *ngIf="pic.touched">
+                    <div class="alert alert-danger" role="alert" *ngIf="pic.errors?.required">"Picture is required!"
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="pic.errors?.path">{{pic.errors.path}}</div>
+                </div>
+
+                <div class="form-group">
+                    <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-block"> Create Account
+                    </button>
+                </div>
+
+                <p class="text-center"><span appHoverBgr>Have an account?</span><a href="">Log In</a></p>
+            </form>
+
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

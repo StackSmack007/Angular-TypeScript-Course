@@ -1,0 +1,70 @@
+<div style="margin: 0 auto; margin-bottom:7%; margin-top:7%;" class="modal-content col-lg-6">
+    <div class="modal-header info-color white-text">
+        <h4 class="title">
+            <i class="fa fa-pencil-alt"></i> Edit your cause:</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="f" (ngSubmit)="editCause()">
+            <label for="defaultFormNameModalEx">Your cause name:</label>
+            <input formControlName="cause" type="text" id="defaultFormNameModalEx" class="form-control form-control-sm"
+                placeholder="Collage...">
+            <div *ngIf="touchedInvalid('cause')">
+                <br>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('cause').errors.required">
+                    Please provide cause name!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('cause').errors.minlength">
+                    Please provide cause name with atleast {{getCtrl('cause').errors.minlength.requiredLength}} symbols!
+                </div>
+            </div>
+
+            <br>
+            <label for="defaultFormEmailModalEx">Your cause picture...</label>
+            <input formControlName="pictureURL" type="text" id="defaultFormEmailModalEx"
+                class="form-control form-control-sm" placeholder="https://...">
+            <div *ngIf="touchedInvalid('pictureURL')">
+                <br>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('pictureURL').errors.required">
+                    Please provide picture URL!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('pictureURL').errors.pattern">
+                    Invalid URL address!
+                </div>
+            </div>
+
+            <br>
+            <label for="defaultFormSubjectModalEx">Your needed funds...</label>
+            <input formControlName="neededFunds" type="number" id="defaultFormSubjectModalEx"
+                class="form-control form-control-sm" placeholder="money need...">
+            <div *ngIf="touchedInvalid('neededFunds')">
+                <br>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('neededFunds').errors.required">
+                    Please provide a money ammount needed!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('neededFunds').errors.min">
+                    Sum must be greater than 0.00!
+                </div>
+            </div>
+
+            <br>
+            <label for="defaultFormMessageModalEx">Your cause description...</label>
+            <textarea formControlName="description" style="resize: none; height: 150px;" type="text"
+                id="defaultFormMessageModalEx" class="md-textarea form-control"
+                placeholder="I'm looking for funds because..."></textarea>
+
+            <div *ngIf="touchedInvalid('description')">
+                <br>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('description').errors.required">
+                    Please provide a money ammount needed!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="getCtrl('description').errors.minlength">
+                    Description length must be atleast {{getCtrl('cause').errors.minlength.requiredLength}} symbols!
+                </div>
+            </div>
+
+            <div class="text-center mt-4 mb-2">
+                <button type="submit" class="btn btn-info">Send</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container" style="margin-bottom: 2%; margin-top:5%;">
+    <div class="row">
+        <div class="modal-content col-lg-12">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="myModalLabel">Make a donation</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;">
+                    <img style="border-radius: 5px;" [src]="cause?.pictureURL" name="aboutme" width="500" height="auto"
+                        class="img-circle">
+                    <h3 class="media-heading">{{cause?.cause}}</h3>
+                    <span>Collected</span>
+                    <strong class="label text-success">${{cause?.collectedFunds | number}}</strong>
+                    <span> from </span>
+                    <strong class="label text-info">${{cause?.neededFunds  | number}}</strong>
+                </div>
+                <hr>
+                <div style="text-align: center;">
+                    <p style="word-wrap: break-word;" class="text-left"><strong>Description: </strong><br>
+                        {{cause?.description}}
+                    </p>
+                    <br>
+                    <div style="word-wrap: break-word;" class="text-left" *ngIf="cause && cause.donors.length>0">
+                        <strong>Donors:</strong><br>
+                        <ul class="list-unstyled">
+                            <li *ngFor="let d of cause.donors">{{d.username}} -- ${{d.ammount | number}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between row">
+                    <div class="float-left" *ngIf="cause && cause['_acl']['creator']===currentUserInfo.id">
+                        <a  routerLink="" (click)="deleteCause()" class="btn btn-danger">Close the cause</a>
+                        <div class="my-2"><a routerLink="" (click)="editCause()" class="btn btn-warning float-left">Edit the
+                            cause</a></div>
+                        
+                    </div>
+                    <form [formGroup]="f" (ngSubmit)="donate()">
+                        <label class="grey-text font-weight-light">My donation: </label>
+                        <input formControlName="currentDonation" type="number" min="1" class="form-control" />
+                        <div *ngIf="currentDonation?.touched && currentDonation.invalid">
+                            <div class="alert alert-danger" role="alert" *ngIf="currentDonation.errors.min">
+                                Provide ammount greater than 1!
+                            </div>
+                        </div>
+
+                        <button style="width: 100%;" class="btn btn-success" [disabled]="f.invalid" type="submit">Make
+                            the
+                            donation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- {{cause | json}} -->

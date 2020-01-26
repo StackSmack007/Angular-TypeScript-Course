@@ -1,0 +1,10 @@
+<div  class="container-fluid mt-4 py-4 ">
+    <h1 class="text-center" *ngIf="causes.length===0;else causesAvailable">NO CAUSES :(</h1>
+
+    <ng-template #causesAvailable>
+           <div class="row d-flex justify-content-start pb-4 mb-4">
+
+        <don-cause-mini class="col-3" *ngFor="let c of causes" [cause]="c"></don-cause-mini>
+    </div>
+    </ng-template>
+</div>

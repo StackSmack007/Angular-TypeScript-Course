@@ -1,0 +1,70 @@
+<div style="margin: 0 auto; margin-bottom:7%; margin-top:7%;" class="modal-content col-lg-6">
+    <div class="card-body">
+        <form [formGroup]="f" (ngSubmit)="registerUser()">
+            <p class="h4 py-4">Register</p>
+            <hr>
+            <label for="username" class="grey-text font-weight-light">Your username</label>
+            <input type="text" id="username" class="form-control" formControlName="username">
+
+            <div *ngIf="username?.touched">
+                <div class="alert alert-danger" role="alert" *ngIf="username.errors?.required">
+                    Please provide Username!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="username.errors?.minlength">
+                    Please provide username with atleast {{username.errors.minlength.requiredLength}} symbols!
+                </div>
+            </div>
+
+            <br>
+            <label for="email" class="grey-text font-weight-light">Your email</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+
+            <div *ngIf="email?.touched">
+                <div class="alert alert-danger" role="alert" *ngIf="email.errors?.required">
+                    Please Provide Email!
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngIf="email.errors?.email">
+                    Please Provide valid Email!
+                </div>
+            </div>
+
+            <br>
+            <label for="defaultFormCardPasswordEx" class="grey-text font-weight-light">Your password</label>
+            <input type="password" id="defaultFormCardPasswordEx" class="form-control" (input)="checkPwdsMatch()"
+                formControlName="password">
+
+            <div *ngIf="password?.touched">
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors?.required">
+                    Please Provide Password!
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors?.minlength">
+                    Please Provide Longer Password! Atleast {{password.errors.minlength.requiredLength}} symbols!
+                </div>
+            </div>
+
+            <br>
+            <label for="repassword" class="grey-text font-weight-light">Your
+                re-password</label>
+            <input type="password" id="repassword" class="form-control" formControlName="repassword"
+                (input)="checkPwdsMatch()">
+
+            <div *ngIf="repassword?.touched">
+                <div class="alert alert-danger" role="alert" *ngIf="password.value!==repassword.value">
+                    Passwords Do Not Match
+                </div>
+            </div>
+
+
+            <div class="alert alert-danger" role="alert"
+                *ngIf="(f.get('repassword').touched && repassword?.errors?.required) || (f.get('password').touched && password?.errors?.required)">
+                Passowrds are required!
+            </div>
+
+            <div class="text-center py-4 mt-3">
+                <button class="btn btn-info" [disabled]="f.invalid || mismatch " type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

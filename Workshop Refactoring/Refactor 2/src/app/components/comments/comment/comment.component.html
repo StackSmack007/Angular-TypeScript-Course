@@ -1,0 +1,7 @@
+<article>
+    <p>{{comment.content}}</p>
+    <div class="info">
+        submitted by {{comment.author}} |
+        <button *ngIf="allowedCommentEdit" (click)="deleteComment()" class="deleteLink">delete</button>
+    </div>
+</article>

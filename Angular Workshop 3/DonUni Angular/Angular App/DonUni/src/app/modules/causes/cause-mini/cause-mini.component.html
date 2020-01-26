@@ -1,0 +1,12 @@
+<!-- <div class="col-3">  -->
+<div class="card mt-4 ">
+    <img class="card-img-top img-fluid" [src]="cause.pictureURL" alt="cause picture">
+    <div class="card-body">
+        <h3 class="card-title">{{cause.cause}}</h3>
+        <p class="card-text">{{cause.description |  slice:0:200}}</p>
+        <a [routerLink]="['/cause/details/',cause._id]" class="btn btn-success"
+            [ngClass]="{'disabled':!isAuthenticated}">Become a donor $$$</a>
+    </div>
+</div>
+<!-- </div> -->
+<!-- style="max-width: 1200px; height: auto; border-radius:25px;"  -->

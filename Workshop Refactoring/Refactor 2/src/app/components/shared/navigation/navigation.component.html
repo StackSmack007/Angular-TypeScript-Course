@@ -1,0 +1,12 @@
+<div id="menu">
+  <div class="title">Navigation</div>
+  <div *ngIf="isLoggedIn;else notLogged">
+    <a class="nav" [routerLink]="[ '/posts' ]">Catalog</a>
+    <a class="nav" [routerLink]="[ '/posts/create' ]">Submit Link</a>
+    <a class="nav" [routerLink]="[ '/posts/user' ]">My Posts</a>
+  </div>
+  <ng-template #notLogged>
+    <a class="nav" [routerLink]="[ '/login' ]">Login</a>
+    <a class="nav" [routerLink]="[ '/register' ]">Register</a>
+  </ng-template>
+</div>

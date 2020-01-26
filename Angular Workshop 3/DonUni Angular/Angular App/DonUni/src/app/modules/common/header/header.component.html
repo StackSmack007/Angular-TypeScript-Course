@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="index">DonUni</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated();else unloggedMenu">
+               
+                <li class="nav-item">
+                    <a class="nav-link mx-2" routerLink="/cause/all">Cau$e$</a>
+                </li>             
+               
+                <li class="nav-item">
+                    <a class="nav-link mx-2" routerLink="/profile">{{authService.currentUser.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" routerLink="" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<ng-template #unloggedMenu>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link mx-2" routerLink="/cause/all">Cau$e$</a>
+        </li>    
+        <li class="nav-item">
+            <a class="nav-link mx-2" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link mx-2" routerLink="/register">Register</a>
+        </li>
+    </ul>
+</ng-template>

@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <h1>Registration Form Reactive!</h1>
+      <form [formGroup]="f" (ngSubmit)="register(f.value)">
+
+        <!-- {{f.value | json}} -->
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          </div>
+          <input formControlName="fullname" class="form-control" placeholder="Full Name">
+        </div>
+        <div *ngIf="f?.get('fullname').touched">
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('fullname').errors?.required">"Full Name is
+            required!"
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('fullname').errors?.pattern">
+            "Incorrect full name format!"</div>
+        </div>
+
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+          </div>
+          <input formControlName="email" class="form-control" placeholder="Email Address" type="email">
+        </div>
+        <div *ngIf="f?.get('email').touched">
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('email').errors?.required">
+            "Email is required!"</div>
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('email').errors?.email">
+            "Incorrect Email format!"</div>
+        </div>
+
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+          </div>
+          <select formControlName="ph_area" class="custom-select" style="max-width: 120px;">
+            <option value="{{code}}" *ngFor="let code of phoneCodes">{{code}}</option>
+          </select>
+
+          <input formControlName="phoneNumber" class="form-control" placeholder="Phone number" type="text">
+        </div>
+        <div *ngIf="f?.get('phoneNumber').touched">
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('phoneNumber').errors?.required">
+            "Phone Number is required!"</div>
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('phoneNumber').errors?.pattern">
+            "Incorrect phone number 9 digits required!"</div>
+        </div>
+
+
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+          </div>
+          <select formControlName="position" class="form-control">
+            <option value="{{pos}}" *ngFor="let pos of positions">{{pos}}</option>
+          </select>
+        </div>
+
+        
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          </div>
+          <input formControlName="pas1" class="form-control" placeholder="Create password" type="password">
+        </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          </div>
+          <input formControlName="pas2" class="form-control" placeholder="Repeat password" type="password">
+        </div>
+
+
+         <div *ngIf="f&& f.get('pas1').touched || f.get('pas2').touched">
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('pas1').value!==f.get('pas2').value">
+            Passwords Mismatch!</div>
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('pas1').invalid ||f.get('pas2').invalid ">
+            Incorrect Password Field(s)! </div>
+          </div>
+
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          </div>
+          <input formControlName="pic" ngModel name="pic" class="form-control" placeholder="picture Url" type="url">
+        </div>
+
+        <div *ngIf="f?.get('pic').touched">
+          <div class="alert alert-danger" role="alert" *ngIf="f.get('pic').errors?.required">"Picture is required!"
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+        </div>
+        <p class="text-center">Have an account? <a href="">Log In</a> </p>
+      </form>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
